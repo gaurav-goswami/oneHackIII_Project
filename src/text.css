@@ -1,0 +1,68 @@
+.flair {
+  background-image: linear-gradient(90deg, #D2722E, #D24255);
+  background-size: 100%;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+
+  color: transparent;
+}
+
+.accented {
+  color: #d2712f
+}
+
+.dark-accented, .dark-accented:hover {
+  color: #9c5625
+}
+
+.high-emphasis {
+  color: white;
+}
+
+.low-emphasis, .low-emphasis:hover {
+  color: #a9a9a9;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.heading1 {
+  font-size: 61px;
+  line-height: 71px;
+}
+
+.heading2 {
+  font-size: 41px;
+  line-height: 50px;
+}
+
+.heading3 {
+  font-size: 32px;
+  line-height: 53px;
+}
+
+.heading4 {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.paragraph {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.small-paragraph {
+  font-size: 12px;
+  line-height: 18px;
+}

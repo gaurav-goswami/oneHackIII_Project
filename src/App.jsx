@@ -1,11 +1,19 @@
 import { useState } from 'react'
+import './App.css'
+import './text.css'
+import Navbar from './Navbar.jsx'
+import Hero from './Hero.jsx'
+import Cards from './Cards.jsx'
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <h1 className='text-center'>One Hack Project</h1>
+      <Navbar />
+      <Hero />
+      <Cards />
     </>
   )
 }
