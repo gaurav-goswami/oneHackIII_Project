@@ -4,8 +4,6 @@ import hero from './assets/hero-image.svg'
 import './text.css'
 
 function Hero() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div id='hero-section'>

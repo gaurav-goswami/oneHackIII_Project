@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import './Footer.css'
+import './Cards.css'
 import './text.css'
 
-function Footer() {
-  const [count, setCount] = useState(0)
-
+function Cards() {
   return (
     <>
       <div id='card-section'>
@@ -39,4 +37,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Cards

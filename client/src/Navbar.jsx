@@ -3,8 +3,6 @@ import './Navbar.css'
 import './text.css'
 
 function Navbar() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <nav id='navbar'>
