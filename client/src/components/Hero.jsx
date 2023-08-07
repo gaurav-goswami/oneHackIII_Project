@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import '../css/Hero.css'
 import '../css/text.css'
 import hero from '../assets/images/hero-image.svg'
