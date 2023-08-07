@@ -1,19 +1,15 @@
-import { useState } from 'react'
-import './App.css'
-import './text.css'
-import Home from './Home.jsx'
-import Navbar from './Navbar.jsx'
-import Hero from './Hero.jsx'
-import Cards from './Cards.jsx'
-import LogIn from './LogIn.jsx'
-import SignIn from './SignIn.jsx'
+import './css/App.css'
+import './css/text.css'
+import Home from './pages/Home.jsx'
+import LogIn from './pages/LogIn.jsx'
+import SignUp from './pages/SignUp.jsx'
 import {Route, Routes, Link} from 'react-router-dom'
 
 function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/sign-in" element={<SignIn />} />
+        <Route exact path="/sign-up" element={<SignUp />} />
         <Route exact path="/log-in" element={<LogIn />} />
         <Route exact path="/" element={<Home />} />
       </Routes>
