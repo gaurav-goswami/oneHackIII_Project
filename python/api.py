@@ -6,7 +6,7 @@ app = Flask(__name__)
 def home():
     return "home"
 
-@app.get("/userData")
+@app.get("/userData", methods=['GET'])
 def get_user_data():
     return(
         {"topic": "Banana Meeting",
