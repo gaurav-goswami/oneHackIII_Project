@@ -5,8 +5,7 @@ const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./middleware/errorMiddleware");
 const connectDB = require("./config/dbConnect");
 
-// routes import 
-const otpRoute = require("./routes/otp");
+// route
 const authRoute = require("./routes/auth");
 
 dotenv.config({
@@ -27,8 +26,7 @@ connectDB();
 
 const PORT = process.env.PORT;
 
-server.use("/api/v1/otp" , otpRoute);
-server.use("/api/v1/auth" , authRoute);
+server.use("/api/v1" , authRoute);
 
 server.use(errorMiddleware);
 
