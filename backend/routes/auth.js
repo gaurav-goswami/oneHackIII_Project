@@ -1,10 +1,8 @@
-const { signUp, login, logout } = require("../controller/auth");
-const { isAuthenticated } = require("../middleware/auth");
+const { connectZoom, getAuth } = require("../controller/auth");
 
 const router = require("express").Router();
 
-router.post("/signup" , signUp);
-router.post("/login" , login);
-router.get("/logout", isAuthenticated, logout);
+router.get("/oauth" , connectZoom)
+router.get("/auth" , getAuth)
 
 module.exports = router;
