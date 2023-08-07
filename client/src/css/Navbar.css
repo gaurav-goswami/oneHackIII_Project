@@ -1,0 +1,32 @@
+#navbar {
+  position: sticky;
+  width: 100%;
+  inset: 0;
+  height: fit-content;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+#navbar-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#navbar-links { 
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar-link {
+  font-weight: 500;
+}
+
+#navbar-logo {
+  width: auto;
+  height: 4.49vh;
+}

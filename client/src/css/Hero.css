@@ -1,0 +1,63 @@
+#hero-section {
+  height: calc(100vh - 6.5rem - 53px);
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+#hero {
+  position: absolute;
+  right: -200px;
+  
+  height: 1000px;
+  aspect-ratio: 1/1;
+
+  user-select: none;
+
+  z-index: -100;
+}
+
+#hero-content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  gap: 30px
+}
+
+#intro {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  gap: 10px
+}
+
+#intro-header {
+  text-transform: uppercase;
+}
+
+
+#intro-title {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+#intro-subtitle {
+  text-align: left;
+  width: 522px;
+}
+
+#hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.hero-link {
+  font-weight: 500;
+  color: #a9a9a9;
+}
