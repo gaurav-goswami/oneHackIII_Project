@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import '../css/Navbar.css'
 import '../css/text.css'
 import filler_logo from '../assets/images/filler-logo.png'

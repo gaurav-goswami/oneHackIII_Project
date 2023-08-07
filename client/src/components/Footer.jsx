@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import '../css/Footer.css'
 import '../css/text.css'
 
