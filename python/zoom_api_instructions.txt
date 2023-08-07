@@ -1,0 +1,697 @@
+REQUEST
+PATH PARAMETERS
+* userId
+string
+The user's user ID or email address. For user-level apps, pass the me value.
+
+REQUEST BODY
+application/json
+Meeting object.
+
+EXAMPLE
+SCHEMA
+OBJECT
+Single line description
+The base meeting object.
+
+Field
+Type
+Description
+agenda
+string
+The meeting's agenda. This value has a maximum length of 2,000 characters.Constraints: Max 2000 chars
+default_password
+boolean
+Whether to generate a default password using the user's settings. This value defaults to false.
+
+If this value is true and the user has the PMI setting enabled with a password, then the user's meetings will use the PMI password. It will not use a default password.Default: false
+duration
+integer
+The meeting's scheduled duration, in minutes. This field is only used for scheduled meetings (2).
+
+password
+string
+The password required to join the meeting. By default, a password can only have a maximum length of 10 characters and only contain alphanumeric characters and the @, -, _, and * characters.
+
+If the account owner or administrator has configured minimum passcode requirement settings, the password must meet those requirements.
+If password requirements are enabled, use the Get user settings API or the Get account settings API to get the requirements.Constraints: Max 10 chars
+pre_schedule
+boolean
+Whether to create a prescheduled meeting via the GSuite app. This only supports the meeting type value of 2 (scheduled meetings) and 3 (recurring meetings with no fixed time).
+
+true - Create a prescheduled meeting.
+false - Create a regular meeting.Default: false
+- recurrence
+object
+Recurrence object. Use this object only for a meeting with type 8 i.e., a recurring meeting with fixed time.
+
+end_date_time
+date-time
+Select the final date on which the meeting will recur before it is canceled. Should be in UTC time, such as 2017-11-25T12:00:00Z. (Cannot be used with "end_times".)
+
+end_times
+integer
+Select how many times the meeting should recur before it is canceled. The default recurrence is 50 times. To support meetings recurring more than 50 times, contact Zoom support. Cannot be used with "end_date_time".Constraints: Max 365 Default: 1
+monthly_day
+integer
+Use this field only if you're scheduling a recurring meeting of type 3 to state which day in a month, the meeting should recur. The value range is from 1 to 31.
+
+For instance, if you would like the meeting to recur on 23rd of each month, provide 23 as the value of this field and 1 as the value of the repeat_interval field. Instead, if you would like the meeting to recur every three months, on 23rd of the month, change the value of the repeat_interval field to 3.Default: 1
+monthly_week
+integer
+Use this field only if you're scheduling a recurring meeting of type 3 to state the week of the month when the meeting should recur. If you use this field, you must also use the monthly_week_day field to state the day of the week when the meeting should recur.
+-1 - Last week of the month.
+1 - First week of the month.
+2 - Second week of the month.
+3 - Third week of the month.
+4 - Fourth week of the month.Allowed: -1┃1┃2┃3┃4
+monthly_week_day
+integer
+Use this field only if you're scheduling a recurring meeting of type 3 to state a specific day in a week when the monthly meeting should recur. To use this field, you must also use the monthly_week field.
+
+1 - Sunday.
+2 - Monday.
+3 - Tuesday.
+4 - Wednesday.
+5 - Thursday.
+6 - Friday.
+7 - Saturday.Allowed: 1┃2┃3┃4┃5┃6┃7
+repeat_interval
+integer
+Define the interval at which the meeting should recur. For instance, if you would like to schedule a meeting that recurs every two months, you must set the value of this field as 2 and the value of the type parameter as 3.
+
+For a daily meeting, the maximum interval you can set is 90 days. For a weekly meeting the maximum interval that you can set is of 12 weeks. For a monthly meeting, there is a maximum of 3 months.
+
+type *
+integer
+Recurrence meeting types:
+1 - Daily.
+2 - Weekly.
+3 - Monthly.Allowed: 1┃2┃3
+weekly_days
+enum
+This field is required if you're scheduling a recurring meeting of type 2 to state which day(s) of the week the meeting should repeat.
+
+The value for this field could be a number between 1 to 7 in string format. For instance, if the meeting should recur on Sunday, provide &quot;1&quot; as the value of this field.
+
+Note: If you would like the meeting to occur on multiple days of a week, you should provide comma separated values for this field. For instance, if the meeting should recur on Sundays and Tuesdays provide &quot;1,3&quot; as the value of this field.
+
+1 - Sunday.
+2 - Monday.
+3 - Tuesday.
+4 - Wednesday.
+5 - Thursday.
+6 - Friday.
+7 - Saturday.Default: 1 Allowed: 1┃2┃3┃4┃5┃6┃7
+schedule_for
+string
+The email address or user ID of the user to schedule a meeting for.
+
+- settings
+object
+Information about the meeting's settings.
+
+additional_data_center_regions
+[string]
+Add additional meeting data center regions. Provide this value as an array of country codes for the countries available as data center regions in the Account Profile interface but have been opted out of in the user settings.
+
+For example, the data center regions selected in your Account Profile are "Europe", "Hong Kong SAR", "Australia", "India", "Japan", "China", "United States", and "Canada". However, in the My Profile settings, you did not select "India" and "Japan" for meeting and webinar traffic routing.
+
+To include "India" and "Japan" as additional data centers, use the [&quot;IN&quot;, &quot;TY&quot;] value for this field.
+
+allow_multiple_devices
+boolean
+Whether to allow attendees to join a meeting from multiple devices. This setting is only applied to meetings with registration enabled.
+
+alternative_hosts
+string
+A semicolon-separated list of the meeting's alternative hosts' email addresses or IDs.
+
+alternative_hosts_email_notification
+boolean
+Whether to send email notifications to alternative hosts. This value defaults to true.Default: true
+approval_type
+integer
+Enable meeting registration approval:
+
+0 - Automatically approve registration.
+1 - Manually approve registration.
+2 - No registration required.
+This value defaults to 2.Default: 2 Allowed: 0┃1┃2
+- approved_or_denied_countries_or_regions
+object
+The list of approved or blocked users from specific countries or regions who can join the meeting.
+
+approved_list
+[string]
+The list of approved countries or regions.
+
+denied_list
+[string]
+The list of blocked countries or regions.
+
+enable
+boolean
+Whether to enable the Approve or block entry for users from specific countries/regions setting.
+
+method
+enum
+Whether to allow or block users from specific countries or regions.
+
+approve - Allow users from specific countries or regions to join the meeting. If you select this setting, include the approved countries or regions in the approved_list field.
+deny - Block users from specific countries or regions from joining the meeting. If you select this setting, include the blocked countries or regions in the denied_list field.Allowed: approve┃deny
+audio
+enum
+How participants join the audio portion of the meeting.
+
+both - Both telephony and VoIP.
+telephony - Telephony only.
+voip - VoIP only.
+thirdParty - Third party audio conference.Default: both Allowed: both┃telephony┃voip┃thirdParty
+audio_conference_info
+string
+Third party audio conference info.Constraints: Max 2048 chars
+authentication_domains
+string
+The meeting's authenticated domains. Only Zoom users whose email address contains an authenticated domain can join the meeting. Comma-separate multiple domains or use a wildcard for listing domains.
+
+- authentication_exception
+array of object
+A list of participants that can bypass meeting authentication. These participants will receive a unique meeting invite.
+
+email
+email
+The participant's email address.
+
+name
+string
+The participant's name.
+
+authentication_option
+string
+If the meeting_authentication value is true, the type of authentication required for users to join a meeting.
+
+To get this value, use the authentication_options array's id value in the Get user settings API response.
+
+auto_recording
+enum
+The automatic recording settings.
+
+local - Record the meeting locally.
+cloud - Record the meeting to the cloud.
+none - Auto-recording disabled.
+This value defaults to none.Default: none Allowed: local┃cloud┃none
+- breakout_room
+object
+The pre-assigned breakout rooms settings.
+
+enable
+boolean
+Whether to enable the Breakout Room pre-assign option.
+
+- rooms
+array of object
+Information about the breakout rooms.
+
+name
+string
+The breakout room's name.
+
+participants
+[string]
+The email addresses of the participants to assign to the breakout room.
+
+calendar_type
+integer
+Indicates the type of calendar integration used to schedule the meeting.
+
+1 - Zoom Outlook add-in
+2 - Zoom for Google Workspace add-on
+Works with the private_meeting field to determine whether to share details of meetings or not.Allowed: 1┃2
+close_registration
+boolean
+Whether to close registration after the event date. This value defaults to false.Default: false
+✗ cn_meeting
+boolean
+Whether to host the meeting in China (CN). This value defaults to false.Default: false
+contact_email
+string
+The contact email address for meeting registration.
+
+contact_name
+string
+The contact name for meeting registration.
+
+email_notification
+boolean
+Whether to send email notifications to alternative hosts and users with scheduling privileges. This value defaults to true.Default: true
+encryption_type
+enum
+The type of end-to-end (E2EE) encryption to use for the meeting.
+
+enhanced_encryption - Enhanced encryption. Encryption is stored in the cloud when you enable this option.
+e2ee - End-to-end encryption. The encryption key is stored on your local device and cannot be obtained by anyone else. When you use E2EE encryption, certain features, such as cloud recording or phone and SIP/H.323 dial-in, are disabled.Allowed: enhanced_encryption┃e2ee
+focus_mode
+boolean
+Whether to enable the Focus Mode feature when the meeting starts.
+
+global_dial_in_countries
+[string]
+A list of available global dial-in countries.
+
+host_video
+boolean
+Whether to start meetings with the host video on.
+
+✗ in_meeting
+boolean
+Whether to host the meeting in India (IN). This value defaults to false.Default: false
+jbh_time
+integer
+If the value of the join_before_host field is true, this field indicates the time limits within which a participant can join a meeting before the meeting's host:
+
+0 — Allow the participant to join the meeting at anytime.
+5 — Allow the participant to join 5 minutes before the meeting's start time.
+10 — Allow the participant to join 10 minutes before the meeting's start time.Allowed: 0┃5┃10
+join_before_host
+boolean
+Whether participants can join the meeting before its host. This field is only used for scheduled meetings (2) or recurring meetings (3 and 8). This value defaults to false.
+
+If the Waiting Room feature is enabled, this setting is disabled.Default: false
+- language_interpretation
+object
+The meeting's language interpretation settings. Make sure to add the language in the web portal in order to use it in the API. See link for details.
+
+Note: This feature is only available for certain Meeting add-on, Education, and Business and higher plans. If this feature is not enabled on the host's account, this setting will not be applied to the meeting.
+
+enable
+boolean
+Whether to enable language interpretation for the meeting.
+
+- interpreters
+array of object
+Information about the meeting's language interpreters.
+
+email
+email
+The interpreter's email address.
+
+languages
+string
+A comma-separated list of the interpreter's languages. The string must contain two country IDs.
+
+For example, if the interpreter will translate from English to Chinese, then this value will be US,CN.
+
+- sign_language_interpretation
+object
+The meeting's sign language interpretation settings. Make sure to add the language in the web portal in order to use it in the API. See link for details.
+
+Note: If this feature is not enabled on the host's account, this setting will not be applied to the meeting.
+
+enable
+boolean
+Whether to enable sign language interpretation for the meeting.
+
+- interpreters
+array of object
+Information about the meeting's sign language interpreters.
+
+email
+email
+The interpreter's email address.
+
+sign_language
+string
+The interpreter's sign language.
+
+To get this value, use the sign_language_interpretation object's languages and custom_languages values in the Get user settings API response.
+
+meeting_authentication
+boolean
+If true, only authenticated users can join the meeting.
+
+- meeting_invitees
+array of object
+A list of the meeting's invitees.
+
+email
+email
+The invitee's email address.
+
+mute_upon_entry
+boolean
+Whether to mute participants upon entry.Default: false
+participant_video
+boolean
+Whether to start meetings with the participant video on.
+
+private_meeting
+boolean
+Whether to set the meeting as private.
+
+registrants_confirmation_email
+boolean
+Whether to send registrants an email confirmation:
+
+true — Send a confirmation email.
+false — Do not send a confirmation email.
+registrants_email_notification
+boolean
+Whether to send registrants email notifications about their registration approval, cancellation, or rejection:
+
+true — Send an email notification.
+false — Do not send an email notification.
+Set this value to true to also use the registrants_confirmation_email parameter.
+
+registration_type
+integer
+The meeting's registration type:
+
+1 — Attendees register once and can attend any meeting occurrence.
+2 — Attendees must register for each meeting occurrence.
+3 — Attendees register once and can select one or more meeting occurrences to attend.
+This field is only for recurring meetings with fixed times (8). This value defaults to 1.Default: 1 Allowed: 1┃2┃3
+show_share_button
+boolean
+Whether to include social media sharing buttons on the meeting's registration page. This setting is only applied to meetings with registration enabled.
+
+use_pmi
+boolean
+Whether to use a Personal Meeting ID (PMI) instead of a generated meeting ID. This field is only used for scheduled meetings (2), instant meetings (1), or recurring meetings with no fixed time (3). This value defaults to false.Default: false
+waiting_room
+boolean
+Whether to enable the Waiting Room feature. If this value is true, this disables the join_before_host setting.
+
+watermark
+boolean
+Whether to add a watermark when viewing a shared screen.Default: false
+host_save_video_order
+boolean
+Whether the Allow host to save video order feature is enabled.
+
+alternative_host_update_polls
+boolean
+Whether the Allow alternative hosts to add or edit polls feature is enabled. This requires Zoom version 5.8.0 or higher.
+
+start_time
+date-time
+The meeting's start time. This field is only used for scheduled and/or recurring meetings with a fixed time. This supports local time and GMT formats.
+
+To set a meeting's start time in GMT, use the yyyy-MM-ddTHH:mm:ssZ date-time format. For example, 2020-03-31T12:02:00Z.
+To set a meeting's start time using a specific timezone, use the yyyy-MM-ddTHH:mm:ss date-time format and specify the timezone ID in the timezone field. If you do not specify a timezone, the timezone value defaults to your Zoom account's timezone. You can also use UTC for the timezone value.
+template_id
+string
+The account admin meeting template ID with which to schedule a meeting using a meeting template. For a list of account admin-provided meeting templates, use the List meeting templates API.
+
+At this time, this field only accepts account admin meeting template IDs.
+To enable the account admin meeting templates feature, contact Zoom support.
+timezone
+string
+The timezone to assign to the start_time value. This field is only used for scheduled or recurring meetings with a fixed time.
+
+For a list of supported timezones and their formats, see our timezone list.
+
+topic
+string
+The meeting's topic.Constraints: Max 200 chars
+- tracking_fields
+array of object
+Information about the meeting's tracking fields.
+
+field *
+string
+The tracking field's label.
+
+value
+string
+The tracking field's value.
+
+type
+integer
+The type of meeting:
+
+1 — An instant meeting.
+2 — A scheduled meeting.
+3 — A recurring meeting with no fixed time.
+8 — A recurring meeting with fixed time.Default: 2 Allowed: 1┃2┃3┃8
+
+HERE IS AN EXAMPLE OF A REQUEST 
+
+{
+  "agenda": "My Meeting",
+  "default_password": false,
+  "duration": 60,
+  "password": "123456",
+  "pre_schedule": false,
+  "recurrence": {
+    "end_date_time": "2022-04-02T15:59:00Z",
+    "end_times": 7,
+    "monthly_day": 1,
+    "monthly_week": 1,
+    "monthly_week_day": 1,
+    "repeat_interval": 1,
+    "type": 1,
+    "weekly_days": "1"
+  },
+  "schedule_for": "jchill@example.com",
+  "settings": {
+    "additional_data_center_regions": [
+      "TY"
+    ],
+    "allow_multiple_devices": true,
+    "alternative_hosts": "jchill@example.com;thill@example.com",
+    "alternative_hosts_email_notification": true,
+    "approval_type": 2,
+    "approved_or_denied_countries_or_regions": {
+      "approved_list": [
+        "CX"
+      ],
+      "denied_list": [
+        "CA"
+      ],
+      "enable": true,
+      "method": "approve"
+    },
+    "audio": "telephony",
+    "audio_conference_info": "test",
+    "authentication_domains": "example.com",
+    "authentication_exception": [
+      {
+        "email": "jchill@example.com",
+        "name": "Jill Chill"
+      }
+    ],
+    "authentication_option": "signIn_D8cJuqWVQ623CI4Q8yQK0Q",
+    "auto_recording": "cloud",
+    "breakout_room": {
+      "enable": true,
+      "rooms": [
+        {
+          "name": "room1",
+          "participants": [
+            "jchill@example.com"
+          ]
+        }
+      ]
+    },
+    "calendar_type": 1,
+    "close_registration": false,
+    "contact_email": "jchill@example.com",
+    "contact_name": "Jill Chill",
+    "email_notification": true,
+    "encryption_type": "enhanced_encryption",
+    "focus_mode": true,
+    "global_dial_in_countries": [
+      "US"
+    ],
+    "host_video": true,
+    "jbh_time": 0,
+    "join_before_host": false,
+    "language_interpretation": {
+      "enable": true,
+      "interpreters": [
+        {
+          "email": "interpreter@example.com",
+          "languages": "US,FR"
+        }
+      ]
+    },
+    "sign_language_interpretation": {
+      "enable": true,
+      "interpreters": [
+        {
+          "email": "interpreter@example.com",
+          "sign_language": "American"
+        }
+      ]
+    },
+    "meeting_authentication": true,
+    "meeting_invitees": [
+      {
+        "email": "jchill@example.com"
+      }
+    ],
+    "mute_upon_entry": false,
+    "participant_video": false,
+    "private_meeting": false,
+    "registrants_confirmation_email": true,
+    "registrants_email_notification": true,
+    "registration_type": 1,
+    "show_share_button": true,
+    "use_pmi": false,
+    "waiting_room": false,
+    "watermark": false,
+    "host_save_video_order": true,
+    "alternative_host_update_polls": true
+  },
+  "start_time": "2022-03-25T07:32:55Z",
+  "template_id": "Dv4YdINdTk+Z5RToadh5ug==",
+  "timezone": "America/Los_Angeles",
+  "topic": "My Meeting",
+  "tracking_fields": [
+    {
+      "field": "field1",
+      "value": "value1"
+    }
+  ],
+  "type": 2
+}
+
+HERE ARE ALL OF THE TIMEZONES THAT ZOOM OFFERS AND THEIR ID'S PLEASE USE ID'S WHEN MAKING ZOOM Meeting
+
+ID Name  Timezones
+Pacific/Midway	Midway Island, Samoa
+Pacific/Pago_Pago	Pago Pago
+Pacific/Honolulu	Hawaii
+America/Anchorage	Alaska
+America/Vancouver	Vancouver
+America/Los_Angeles	Pacific Time (US and Canada)
+America/Tijuana	Tijuana
+America/Edmonton	Edmonton
+America/Denver	Mountain Time (US and Canada)
+America/Phoenix	Arizona
+America/Mazatlan	Mazatlan
+America/Winnipeg	Winnipeg
+America/Regina	Saskatchewan
+America/Chicago	Central Time (US and Canada)
+America/Mexico_City	Mexico City
+America/Guatemala	Guatemala
+America/El_Salvador	El Salvador
+America/Managua	Managua
+America/Costa_Rica	Costa Rica
+America/Montreal	Montreal
+America/New_York	Eastern Time (US and Canada)
+America/Indianapolis	Indiana (East)
+America/Panama	Panama
+America/Bogota	Bogota
+America/Lima	Lima
+America/Halifax	Halifax
+America/Puerto_Rico	Puerto Rico
+America/Caracas	Caracas
+America/Santiago	Santiago
+America/St_Johns	Newfoundland and Labrador
+America/Montevideo	Montevideo
+America/Araguaina	Brasilia
+America/Argentina/Buenos_Aires	Buenos Aires, Georgetown
+America/Godthab	Greenland
+America/Sao_Paulo	Sao Paulo
+Atlantic/Azores	Azores
+Canada/Atlantic	Atlantic Time (Canada)
+Atlantic/Cape_Verde	Cape Verde Islands
+UTC	Universal Time UTC
+Etc/Greenwich	Greenwich Mean Time
+Europe/Belgrade	Belgrade, Bratislava, Ljubljana
+CET	Sarajevo, Skopje, Zagreb
+Atlantic/Reykjavik	Reykjavik
+Europe/Dublin	Dublin
+Europe/London	London
+Europe/Lisbon	Lisbon
+Africa/Casablanca	Casablanca
+Africa/Nouakchott	Nouakchott
+Europe/Oslo	Oslo
+Europe/Copenhagen	Copenhagen
+Europe/Brussels	Brussels
+Europe/Berlin	Amsterdam, Berlin, Rome, Stockholm, Vienna
+Europe/Helsinki	Helsinki
+Europe/Amsterdam	Amsterdam
+Europe/Rome	Rome
+Europe/Stockholm	Stockholm
+Europe/Vienna	Vienna
+Europe/Luxembourg	Luxembourg
+Europe/Paris	Paris
+Europe/Zurich	Zurich
+Europe/Madrid	Madrid
+Africa/Bangui	West Central Africa
+Africa/Algiers	Algiers
+Africa/Tunis	Tunis
+Africa/Harare	Harare, Pretoria
+Africa/Nairobi	Nairobi
+Europe/Warsaw	Warsaw
+Europe/Prague	Prague Bratislava
+Europe/Budapest	Budapest
+Europe/Sofia	Sofia
+Europe/Istanbul	Istanbul
+Europe/Athens	Athens
+Europe/Bucharest	Bucharest
+Asia/Nicosia	Nicosia
+Asia/Beirut	Beirut
+Asia/Damascus	Damascus
+Asia/Jerusalem	Jerusalem
+Asia/Amman	Amman
+Africa/Tripoli	Tripoli
+Africa/Cairo	Cairo
+Africa/Johannesburg	Johannesburg
+Europe/Moscow	Moscow
+Asia/Baghdad	Baghdad
+Asia/Kuwait	Kuwait
+Asia/Riyadh	Riyadh
+Asia/Bahrain	Bahrain
+Asia/Qatar	Qatar
+Asia/Aden	Aden
+Asia/Tehran	Tehran
+Africa/Khartoum	Khartoum
+Africa/Djibouti	Djibouti
+Africa/Mogadishu	Mogadishu
+Asia/Dubai	Dubai
+Asia/Muscat	Muscat
+Asia/Baku	Baku, Tbilisi, Yerevan
+Asia/Kabul	Kabul
+Asia/Yekaterinburg	Yekaterinburg
+Asia/Tashkent	Islamabad, Karachi, Tashkent
+Asia/Calcutta	India
+Asia/Kathmandu	Kathmandu
+Asia/Novosibirsk	Novosibirsk
+Asia/Almaty	Almaty
+Asia/Dacca	Dacca
+Asia/Krasnoyarsk	Krasnoyarsk
+Asia/Dhaka	Astana, Dhaka
+Asia/Bangkok	Bangkok
+Asia/Saigon	Vietnam
+Asia/Jakarta	Jakarta
+Asia/Irkutsk	Irkutsk, Ulaanbaatar
+Asia/Shanghai	Beijing, Shanghai
+Asia/Hong_Kong	Hong Kong
+Asia/Taipei	Taipei
+Asia/Kuala_Lumpur	Kuala Lumpur
+Asia/Singapore	Singapore
+Australia/Perth	Perth
+Asia/Yakutsk	Yakutsk
+Asia/Seoul	Seoul
+Asia/Tokyo	Osaka, Sapporo, Tokyo
+Australia/Darwin	Darwin
+Australia/Adelaide	Adelaide
+Asia/Vladivostok	Vladivostok
+Pacific/Port_Moresby	Guam, Port Moresby
+Australia/Brisbane	Brisbane
+Australia/Sydney	Canberra, Melbourne, Sydney
+Australia/Hobart	Hobart
+Asia/Magadan	Magadan
+SST	Solomon Islands
+Pacific/Noumea	New Caledonia
+Asia/Kamchatka	Kamchatka
+Pacific/Fiji	Fiji Islands, Marshall Islands
+Pacific/Auckland	Auckland, Wellington
+Asia/Kolkata	Mumbai, Kolkata, New Delhi
+Europe/Kiev	Kiev
+America/Tegucigalpa	Tegucigalpa
+Pacific/Apia	Independent State of Samoa
