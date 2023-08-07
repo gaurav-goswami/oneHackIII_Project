@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import './Cards.css'
-import './text.css'
+import '../css/Cards.css'
+import '../css/text.css'
 
 function Cards() {
   return (

@@ -25,3 +25,8 @@
 .navbar-link {
   font-weight: 500;
 }
+
+#navbar-logo {
+  width: auto;
+  height: 4.49vh;
+}

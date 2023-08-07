@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './Hero.css'
-import hero from './assets/hero-image.svg'
-import './text.css'
+import '../css/Hero.css'
+import '../css/text.css'
+import hero from '../assets/images/hero-image.svg'
 
 function Hero() {
   return (

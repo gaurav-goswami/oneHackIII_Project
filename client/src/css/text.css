@@ -43,7 +43,7 @@
   line-height: 71px;
 }
 
-h2 {
+.heading2, h2 {
   margin:0px;
   font-size: 41px;
   line-height: 50px;

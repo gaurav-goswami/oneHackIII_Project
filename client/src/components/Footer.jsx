@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import './Footer.css'
-import './text.css'
+import '../css/Footer.css'
+import '../css/text.css'
 
 function Footer() {
   return (
