@@ -1,33 +1,18 @@
 from flask import Flask, request, jsonify
+import gpt_text_parser
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return "home"
+@app.route('/schedule')
+def index():
+    return
 
-@app.get("/userData", methods=['GET'])
-def get_user_data():
-    return(
-        {"topic": "Banana Meeting",
-                  "type": 2,
-                  "start_time": "2019-06-14T10: 00: 57",
-                  "duration": "45",
-                  "timezone": "Pacific",
-                  "agenda": "None",
- 
-                  "recurrence": {"type": 1,
-                                 "repeat_interval": 1
-                                 },
-                  "settings": {"host_video": "true","participant_video": "False",
-                               "join_before_host": "False",
-                               "mute_upon_entry": "False",
-                               "watermark": "true",
-                               "audio": "voip",
-                               "auto_recording": "cloud"
-                               }
-                  }
-    )
+@app.route("/schedule", methods=['POST'])
+def getvalue():
+    input = request.form['user-input']
+    output = gpt_text_parser.create_meeting(input)
+    print(output)
+    return "Hello"
 
-if __name__ == "__main__":
+if __name__ =='__main__':
     app.run(debug=True)
