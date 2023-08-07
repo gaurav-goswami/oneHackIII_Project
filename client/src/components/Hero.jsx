@@ -11,16 +11,14 @@ function Hero() {
             <span id='intro-header' className='paragraph flair bold'>Learn how we are</span>
             <div id='intro-title'>
               <span className='heading1 bold high-emphasis'>Helping Students</span>
-              <span className='heading1 bold high-emphasis'>with Innovative</span>
-              <span className='heading1 bold high-emphasis'>Incentives</span>
+              <span className='heading1 bold high-emphasis'>Sched the Unwanted</span>
             </div>
             <span id='intro-subtitle' className='low-emphasis paragraph'>
-              <span className='high-emphasis semibold'>Lorem ipsum dolor sit amet</span>, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              <span className='high-emphasis semibold'>SCHED</span> helps in reducing literary migranes by eliminating the need to schedule meetings manually! 
             </span>
           </div>
           <div id='hero-cta'>
-              <a href='#' className='primary-cta paragraph semibold high-emphasis'>Sign Up</a>
-              <a href='#' className='paragraph semibold low-emphasis'>Log In</a>
+              <a href='/connect' className='primary-cta paragraph semibold high-emphasis'>Connect</a>
             </div>
         </div>
         <img src={hero} id='hero'/>

@@ -5,7 +5,7 @@ import '../css/index.css'
 import Navbar from '../components/Navbar.jsx'
 
 import icon_zoom from '../assets/images/zoom-icon.svg'
-import graphic from '../assets/images/log-in-graphic.svg'
+import graphic from '../assets/images/connect-graphic.svg'
 import line_texture from '../assets/images/line-texture.svg'
 import { useState } from 'react'
 import axios from "axios";
