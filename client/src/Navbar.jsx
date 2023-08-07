@@ -7,7 +7,7 @@ function Navbar() {
     <>
       <nav id='navbar'>
         <div id='navbar-container'>
-          <div id='logo'></div>
+          <div id='logo'>LOGO</div>
           <div id='navbar-links'>
             <a href="#" className="medium paragraph">Shop</a>
             <a href="#" className="medium paragraph">Log In</a>
