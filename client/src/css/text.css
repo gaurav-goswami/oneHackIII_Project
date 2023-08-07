@@ -17,6 +17,14 @@
   color: #9c5625
 }
 
+.dark {
+  color: #1C1B1A;
+}
+
+.dark-low-emphasis {
+  color: #1F1E1E;
+}
+
 .high-emphasis {
   color: white;
 }

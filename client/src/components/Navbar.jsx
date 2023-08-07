@@ -3,7 +3,10 @@ import '../css/Navbar.css'
 import '../css/text.css'
 import filler_logo from '../assets/images/filler-logo.png'
 
-function Navbar() {
+function Navbar(props) {
+
+  const links = JSON.parse(props.links)
+
   return (
     <>
       <nav id='navbar'>
@@ -12,13 +15,16 @@ function Navbar() {
             <img id='navbar-logo' src={filler_logo}></img>
           </a>
           <div id='navbar-links'>
-            <a href="/log-in" className="medium paragraph">Log In</a>
-            <a href="/sign-up" className="medium paragraph primary-cta">Sign Up</a>
+            {links.map(link => <a href={link[1]} className={link[2]}>{link[0]}</a>)}
           </div>
         </div>
       </nav>
     </>
   )
+}
+
+Navbar.defaultProps = {
+  links: "[[\"Connect\", \"/connect\", \"medium paragraph primary-cta\"]]"
 }
 
 export default Navbar

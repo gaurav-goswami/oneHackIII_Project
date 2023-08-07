@@ -1,0 +1,87 @@
+#connect-page {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+#content-section {
+    width: 40vw;
+    min-width: 40vw;
+    height: 100%;
+    background-color: white;
+
+    padding: 4rem;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 40px;
+    text-align: left;
+}
+
+#permissions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 30px;
+    text-align: left;
+}
+
+#perm-list {
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 20px;
+    text-align: left;
+}
+
+#connect-button {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#graphic-section {
+    width: 100%
+}
+
+#squiggly-lines {
+    position: absolute;
+    top: -3vh;
+    right: -5vw;
+
+    z-index: -100;
+}
+
+.graphic-wrapper {
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+#graphic {
+    margin-left: 3vw;
+    width: 30vw;
+}
