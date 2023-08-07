@@ -34,12 +34,6 @@
   width: 750px;
 }
 
-#card-cta {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
 .card {
   width: 332px;
 

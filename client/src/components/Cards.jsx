@@ -10,25 +10,21 @@ function Cards() {
             <span className='accented'>By the</span> Numbers
           </span>
           <span id='card-main-description' className='paragraph low-emphasis'>
-            Participants from all over the world came to take part in STEMist Hacks 2.0, where they learned web-dev and Python, and bonded through game nights!
+            Studies have been conducted to see the consumers' opinions about virtual meeting platforms. SCHD aims to fix the convenience of the users by providing help in the most head-breaking task of all: scheduling the meetings themselves.
           </span>
-          <div id='card-cta'>
-            <a href='#' className='secondary-cta paragraph semibold dark-accented'>2022 Devpost &#62;</a>
-            <a href='#' className='paragraph semibold low-emphasis'>Discord Server &#62;</a>
-          </div>
         </div>
         <div id='card-statistics'>
           <div className='card'>
-            <span className='heading4 semibold high-emphasis'>$256,000+ in prizes</span>
-            <span className='paragraph low-emphasis'>Thanks to our gracious sponsors, we were able to offer out over 256,000 USD in prizes, with 2,000 in cash</span>
+            <span className='heading4 semibold high-emphasis'>30.4% with 10+ hours</span>
+            <span className='paragraph low-emphasis'>The number of students and workers using virtual meeting platforms for 10+ hours has spiked up to 30.4% in 2020.</span>
           </div>
           <div className='card emphasized-card'>
-            <span className='heading4 semibold high-emphasis'>$256,000+ in prizes</span>
-            <span className='paragraph high-emphasis'>Thanks to our gracious sponsors, we were able to offer out over 256,000 USD in prizes, with 2,000 in cash</span>
+            <span className='heading4 semibold high-emphasis'>New Tactics Needed</span>
+            <span className='paragraph high-emphasis'>Only 25% of people think Zoom is convenient to use, much lower than that of Google Meet with 54%.</span>
           </div>
           <div className='card'>
-            <span className='heading4 semibold high-emphasis'>$256,000+ in prizes</span>
-            <span className='paragraph low-emphasis'>Thanks to our gracious sponsors, we were able to offer out over 256,000 USD in prizes, with 2,000 in cash</span>
+            <span className='heading4 semibold high-emphasis'>Use Ease is Priority</span>
+            <span className='paragraph low-emphasis'>85/100 people get attracted to a virtual meeting platform if its easy to use.</span>
           </div>
         </div>
       </div>
